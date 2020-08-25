@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <title>Minesweeper</title>
+  <link rel="stylesheet" href="css/app.css">
+</head>
+
+<body>
+  <div class="row">
+    <div class="column">
+      <h1>Minesweeper</h1>
+      <div class="header">
+        <div>
+          <img src="img/stopwatch.png">
+          <div id="time">00:00</div>
+        </div>
+        <button id="up" class="arrow">&#9651;</button>
+        <div>
+          <img src="img/flag.png">
+          <div id="flags">0</div>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: row; justify-content: center;">
+        <button id="left" class="arrow">&#9665;</button>
+        <div id="field" class="field"></div>
+        <button id="right" class="arrow">&#9655;</button>
+      </div>
+      <button id="down" class="arrow">&#9661;</button>
+
+      <div id="new" class="button" style="margin-top: 20px">New Game</div>
+
+      <div id="menu" class="menu">
+        <label>Width:</label>
+        <input id="width" type="number" value="200" />
+        <label>Height:</label>
+        <input id="height" type="number" value="200" />
+        <label>Mines:</label>
+        <input id="mines" type="number" value="200" />
+        <div style="display:flex; flex-direction: row; align-items:center;">
+          <label>Superman:</label>
+          <input id="superman" type="checkbox" />
+        </div>
+          <button id='start' class="button">Start</button>
+      </div>
+
+      <div id="alert" class="alert">
+        <h2 id="msg"></h2>
+      </div>
+    </div>
+
+    <div class="column">
+      <div id="map-frame" class="map-frame">
+        <canvas id="map" style="margin: 0px;"></canvas>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="js/app.js" type="module"></script>
+</body>
+
+</html>
