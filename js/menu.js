@@ -12,7 +12,7 @@ export class Menu {
     this.form.onSubmit = ()=> this.submit();
 
     this.menu = get('menu');
-    this.engine.onInit.add(()=> this.menu.style.display = 'flex');
+    this.engine.onInit.call(()=> this.menu.style.display = 'flex');
   }
 
   submit(){

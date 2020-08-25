@@ -31,7 +31,6 @@ export class GameEngine {
     this.initMines();
     this.initNumbers();
     this.stopwatch.start();
-    this.onChange.emit();
     this.onStart.emit();
   }
 
@@ -151,64 +150,6 @@ export class GameEngine {
   }
 }
 
-class Viewport {
-  constructor(engine) {
-    this.engine = engine;
-    this.cells = [];
-    this.height = this.width = 0;
-    this.top = this.bottom = this.left = this.right = 0;
-    this.onUpdate = new Emitter();
-    this.init();
-  }
-
-  init() {
-    this.height = this.engine.height < 10 ? this.engine.height : 10;
-    this.width = this.engine.width < 10 ? this.engine.width : 10;
-    this.top = this.left = 0;
-    this.bottom = this.top + this.height - 1;
-    this.right = this.left + this.width - 1;
-    this.update();
-  }
-
-  update() {
-    this.cells = [];
-    for (let top = this.top; top <= this.bottom; top++) {
-      for (let left = this.left; left <= this.right; left++) {
-        this.cells.push(this.engine.getCell(top, left));
-      }
-    }
-    this.onUpdate.emit();
-  }
-
-  moveRight() {
-    if (this.right + 1 >= this.engine.width) return;
-    this.left++;
-    this.right++;
-    this.update();
-  }
-
-  moveLeft() {
-    if (this.left - 1 < 0) return;
-    this.left--;
-    this.right--;
-    this.update();
-  }
-
-  moveDown() {
-    if (this.bottom + 1 >= this.engine.height) return;
-    this.top++;
-    this.bottom++;
-    this.update();
-  }
-
-  moveUp() {
-    if (this.top - 1 < 0) return;
-    this.top--;
-    this.bottom--;
-    this.update();
-  }
-}
-
 export class Cell {
   static CLOSED = 0;
   static FLAG = 1;
@@ -266,5 +207,63 @@ export class Stopwatch {
       window.clearInterval(this.interval);
       this.interval = 0;
     }
+  }
+}
+
+class Viewport {
+  constructor(engine) {
+    this.engine = engine;
+    this.cells = [];
+    this.height = this.width = 0;
+    this.top = this.bottom = this.left = this.right = 0;
+    this.onChange = new Emitter();
+    this.init();
+  }
+
+  init() {
+    this.height = this.engine.height < 10 ? this.engine.height : 10;
+    this.width = this.engine.width < 10 ? this.engine.width : 10;
+    this.top = this.left = 0;
+    this.bottom = this.top + this.height - 1;
+    this.right = this.left + this.width - 1;
+    this.update();
+  }
+
+  update() {
+    this.cells = [];
+    for (let top = this.top; top <= this.bottom; top++) {
+      for (let left = this.left; left <= this.right; left++) {
+        this.cells.push(this.engine.getCell(top, left));
+      }
+    }
+    this.onChange.emit();
+  }
+
+  moveRight() {
+    if (this.right + 1 >= this.engine.width) return;
+    this.left++; 
+    this.right++;
+    this.update();
+  }
+
+  moveLeft() {
+    if (this.left - 1 < 0) return;
+    this.left--;
+    this.right--;
+    this.update();
+  }
+
+  moveDown() {
+    if (this.bottom + 1 >= this.engine.height) return;
+    this.top++;
+    this.bottom++;
+    this.update();
+  }
+
+  moveUp() {
+    if (this.top - 1 < 0) return;
+    this.top--;
+    this.bottom--;
+    this.update();
   }
 }

@@ -5,9 +5,10 @@ export class Map {
   constructor(engine) {
     this.engine = engine;
     this.visible = false;
-    this.engine.onStart.add(()=>this.start());
-    this.engine.onChange.add(()=>this.drawMap());
-    this.engine.view.onUpdate.add(()=>this.drawView());
+    this.engine.onStart.call(()=>this.start());
+    this.engine.onInit.call(()=>this.start());
+    this.engine.onChange.call(()=>this.drawMap());
+    this.engine.view.onChange.call(()=>this.drawView());
 
     this.arrows = [
       new Arrow('right', ()=> this.engine.view.moveRight()),
@@ -32,7 +33,7 @@ export class Map {
       'rgb(200, 250, 200)', // empty
       'rgb(200, 250, 200)', // number
       'rgb(70, 70, 70)', // mine
-      'rgb(100, 100, 250)'  // hint
+      'rgb(110, 110, 250)'  // hint
     ];
   }
 

@@ -15,9 +15,11 @@ export class Emitter{
   constructor(){
     this.handlers = [];
   }
-  add(handler){
+
+  call(handler){
     this.handlers.push(handler);
   }
+
   emit(value){
     for(let handler of this.handlers)
       queueMicrotask(()=>handler(value));

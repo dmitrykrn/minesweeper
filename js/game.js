@@ -6,11 +6,12 @@ export class Game {
     this.engine = engine;
     this.cells = [];
     this.cellClass = ['closed', 'flag', 'empty', 'number', 'mine', 'hint'];
-    this.engine.stopwatch.onTick = this.tick.bind(this);
-    this.engine.onStart.add(this.start.bind(this));
-    this.engine.onInit.add(this.start.bind(this));
-    this.engine.view.onUpdate.add(()=>this.updateField());
-    this.engine.onChange.add(()=>this.updateField());
+
+    this.engine.stopwatch.onTick = (time)=>this.tick(time);
+    this.engine.onStart.call(()=>this.start());
+    this.engine.onInit.call(()=>this.start());
+    this.engine.onChange.call(()=>this.updateField());
+    this.engine.view.onChange.call(()=>this.updateField());
 
     this.field = get('field');
     this.flags = get('flags');

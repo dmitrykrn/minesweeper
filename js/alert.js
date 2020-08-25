@@ -5,9 +5,9 @@ export class Alert{
     this.engine = engine;
     this.alert = get('alert');
     this.msg = get('msg');
-    this.engine.onWin.add(this.win.bind(this));
-    this.engine.onLose.add(this.lose.bind(this));
-    this.engine.onFlag.add(this.flag.bind(this));
+    this.engine.onWin.call(()=>this.win());
+    this.engine.onLose.call(()=>this.lose());
+    this.engine.onFlag.call(()=>this.flagAlert());
   }
 
   win(){
@@ -20,7 +20,7 @@ export class Alert{
     this.msg.innerText = 'Sorry, you LOST.';
   }
 
-  flag(){
+  flagAlert(){
     this.open();
     this.msg.innerText = 'Sorry, no flags left.';
   }
