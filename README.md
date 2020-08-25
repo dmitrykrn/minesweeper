@@ -1,0 +1,2 @@
+# minesweeper
+Wix Home Assignment
