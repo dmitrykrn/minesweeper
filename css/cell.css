@@ -1,0 +1,52 @@
+.cell, .closed, .empty, .number, .mine, .flag, .hint {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  width: 40px;
+  height: 40px;
+  margin: 0px;
+  border: solid 1px rgb(150, 150, 200);
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.cell:hover, .closed:hover, .empty:hover, .number:hover, .mine:hover, .flag:hover, .hint:hover {
+  background-color: rgb(250, 250, 210);
+}
+
+.closed {
+  background-color: rgb(210, 210, 250);
+}
+
+.hint {
+  background-color: rgb(160, 160, 250);
+}
+
+.empty, .number{
+  background-color: rgb(210, 250, 210);
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.mine {
+  background-color: rgb(250, 100, 100);
+  background-size: 25px 25px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.flag{
+  background-color: rgb(210, 210, 250);
+  background-size: 25px 25px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.mine{
+  background-image: url("../img/mine.png");
+}
+
+.flag{
+  background-image: url("../img/flag.png");
+}
